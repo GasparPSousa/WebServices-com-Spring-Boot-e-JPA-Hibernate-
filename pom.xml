@@ -12,7 +12,7 @@
 	<artifactId>course</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>course</name>
-	<description>Projeto Web Services com Spring Booi e JPA/Hibernate</description>
+	<description>Web Services com Spring Boot e JPA/Hibernate</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
