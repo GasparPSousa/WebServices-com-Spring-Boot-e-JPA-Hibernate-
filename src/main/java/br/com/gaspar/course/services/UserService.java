@@ -2,6 +2,7 @@ package br.com.gaspar.course.services;
 
 import br.com.gaspar.course.entities.User;
 import br.com.gaspar.course.repositories.UserRepository;
+import br.com.gaspar.course.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class UserService {
     // Listar objeto User por Id
     public User findById(Long id) {
         Optional<User> obj = userRepository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     // Criar um objeto User
