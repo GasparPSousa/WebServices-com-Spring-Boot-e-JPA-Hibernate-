@@ -1,11 +1,14 @@
 package br.com.gaspar.course.entities;
 
 import br.com.gaspar.course.entities.pk.OrdemItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Access;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -22,7 +25,8 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private OrdemItemPK id;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private OrdemItemPK id = new OrdemItemPK();
     private Integer quantity;
     private Double price;
 
@@ -33,6 +37,8 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
