@@ -17,6 +17,7 @@ public class UserResource {
     @Autowired
     private UserService userService;
 
+    // Listar Todos Users
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
         List<User> list = userService.findAll();
@@ -24,12 +25,14 @@ public class UserResource {
         return ResponseEntity.ok().body(list);
     }
 
+    // Listar objeto User por Id
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id) {
         User obj = userService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
+    // Criar um objeto User
     @PostMapping
     public ResponseEntity<User> insert(@RequestBody User obj) {
         obj = userService.insert(obj);
@@ -38,9 +41,17 @@ public class UserResource {
         return ResponseEntity.created(uri).body(obj);
     }
 
+    // Deletar um objeto User por Id
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // Atualizar um objeto User
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj) {
+        obj = userService.update(id, obj);
+        return ResponseEntity.ok().body(obj);
     }
 }
