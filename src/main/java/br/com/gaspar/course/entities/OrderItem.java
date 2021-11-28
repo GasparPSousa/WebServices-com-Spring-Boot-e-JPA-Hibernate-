@@ -27,6 +27,7 @@ public class OrderItem implements Serializable {
     @EmbeddedId
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private OrdemItemPK id = new OrdemItemPK();
+
     private Integer quantity;
     private Double price;
 
@@ -40,18 +41,22 @@ public class OrderItem implements Serializable {
 
     @JsonIgnore
     public Order getOrder() {
+
         return id.getOrder();
     }
 
     public void setOrder(Order order) {
+
         id.setOrder(order);
     }
+
 
     public Product getProduct() {
         return id.getProduct();
     }
 
     public void setProduct(Product product) {
+
         id.setProduct(product);
     }
 
